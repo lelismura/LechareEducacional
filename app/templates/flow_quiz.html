@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <div class="card" style="margin-top:18px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div>Disciplina: <strong>{{ disc.name }}</strong></div>
+
+      <!-- Controles com ícones -->
+      <div style="display:flex;gap:8px;">
+        <!-- Início (home) -->
+        <a href="/start" class="btn btn-ghost" title="Início" aria-label="Início" style="padding:8px 10px;">🏠</a>
+        <!-- Próxima (sortear) -->
+        <a href="/quiz" class="btn" title="Próxima" aria-label="Próxima" style="padding:8px 12px;">▶</a>
+        <!-- Fechar -->
+        <a href="/bye" class="btn btn-ghost" title="Fechar" aria-label="Fechar" style="padding:8px 10px;">✖</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <details open>
+      <summary style="cursor:pointer;font-weight:700;">Pergunta</summary>
+      <div style="margin-top:10px;">
+        {% if q %}
+          {{ q.tx_question }}
+        {% else %}
+          <em>Não há perguntas cadastradas para esta disciplina.</em>
+        {% endif %}
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <details>
+      <summary style="cursor:pointer;font-weight:700;">Resposta</summary>
+      <div style="margin-top:10px;">
+        {% if q and q.tx_answer %} {{ q.tx_answer }} {% else %} <em>(sem resposta)</em> {% endif %}
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <details>
+      <summary style="cursor:pointer;font-weight:700;">Comentário</summary>
+      <div style="margin-top:10px;">
+        {% if q and q.tx_comment %} {{ q.tx_comment }} {% else %} <em>(sem comentário)</em> {% endif %}
+      </div>
+    </details>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Lechare Educacional{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="auth" style="max-width:820px">
+    <div class="row" style="justify-content:space-between;align-items:center;margin-bottom:12px">
+      <div class="muted">Disciplina: <strong>{{ disciplina.name }}</strong></div>
+      <div class="actions">
+        <a class="btn-ghost" href="/">🏠</a>
+        <button id="btn-next" class="btn">▶</button>
+        <a class="btn-ghost" href="/bye">x</a>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:12px">
+      <div class="row" style="justify-content:space-between;align-items:center">
+        <h3 style="margin:0">Pergunta</h3>
+        <button class="btn-ghost" id="tog-q">▾</button>
+      </div>
+      <div id="box-q" style="display:none;margin-top:8px;white-space:pre-wrap"></div>
+    </div>
+
+    <div class="card" style="margin-bottom:12px">
+      <div class="row" style="justify-content:space-between;align-items:center">
+        <h3 style="margin:0">Resposta</h3>
+        <button class="btn-ghost" id="tog-a">▾</button>
+      </div>
+      <div id="box-a" style="display:none;margin-top:8px;white-space:pre-wrap"></div>
+    </div>
+
+    <div class="card">
+      <div class="row" style="justify-content:space-between;align-items:center">
+        <h3 style="margin:0">Comentário</h3>
+        <button class="btn-ghost" id="tog-c">▾</button>
+      </div>
+      <div id="box-c" style="display:none;margin-top:8px;white-space:pre-wrap"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggle(id){ const el=document.getElementById(id); el.style.display = (el.style.display==='none' || !el.style.display)?'block':'none'; }
+  document.getElementById('tog-q').onclick = ()=>toggle('box-q');
+  document.getElementById('tog-a').onclick = ()=>toggle('box-a');
+  document.getElementById('tog-c').onclick = ()=>toggle('box-c');
+
+  async function loadQ(){
+    try{
+      const r = await fetch('/quiz/random?ts='+Date.now());
+      if(!r.ok){ throw new Error('Sem perguntas'); }
+      const q = await r.json();
+      document.getElementById('box-q').textContent = q.question || '';
+      document.getElementById('box-a').textContent = q.answer   || '';
+      document.getElementById('box-c').textContent = q.comment  || '';
+      // ao sortear, recolhe tudo; só a pergunta fica recolhida até o usuário abrir
+      ['box-q','box-a','box-c'].forEach(id => document.getElementById(id).style.display='none');
+    }catch(e){
+      document.getElementById('box-q').textContent = 'Não foi possível carregar a pergunta ('+e.message+').';
+      document.getElementById('box-a').textContent = '';
+      document.getElementById('box-c').textContent = '';
+    }
+  }
+  document.getElementById('btn-next').onclick = loadQ;
+  // carrega uma na chegada
+  loadQ();
+</script>
+{% endblock %}

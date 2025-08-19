@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="auth">
+  <h2>Bem-vindo(a)! Escolha sua disciplina</h2>
+
+  {% if error %}<div class="alert alert-error">⚠️ {{ error }}</div>{% endif %}
+
+  <form class="form" method="post" action="/start">
+    <label class="field">
+      <span>Disciplina</span>
+      <select name="discipline_id" id="discipline_id" required>
+        <option value="">-- Selecione --</option>
+        {% for d in disciplinas %}
+          <option value="{{ d.id_discipline }}">{{ d.no_discipline }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label class="field" id="pwdwrap" style="display:none;">
+      <span>Senha da disciplina</span>
+      <input type="password" name="discipline_pwd" placeholder="Digite a senha da disciplina">
+    </label>
+
+    <button class="btn" type="submit" id="btnGo" disabled>Entrar</button>
+  </form>
+</div>
+
+<script>
+  const sel = document.getElementById('discipline_id');
+  const pwd = document.getElementById('pwdwrap');
+  const btn = document.getElementById('btnGo');
+  sel?.addEventListener('change', () => {
+    const has = !!sel.value;
+    pwd.style.display = has ? 'block' : 'none';
+    btn.disabled = !has;
+  });
+</script>
+{% endblock %}

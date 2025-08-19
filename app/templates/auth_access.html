@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="auth">
+  <h2>Escolher disciplina</h2>
+
+  {% if error %}
+    <div class="alert alert-error">⚠️ {{ error }}</div>
+  {% endif %}
+
+  <form class="form" method="post" action="/access">
+    <label class="field">
+      <span>Disciplina</span>
+      <select name="discipline_id" required>
+        <option value="">-- Selecione --</option>
+        {% for d in disciplinas %}
+          <option value="{{ d.id_discipline }}">{{ d.no_discipline }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label class="field">
+      <span>Senha da disciplina</span>
+      <input type="password" name="discipline_pwd" placeholder="Digite a senha da disciplina" required>
+    </label>
+
+    <button class="btn" type="submit">Continuar</button>
+  </form>
+</div>
+{% endblock %}

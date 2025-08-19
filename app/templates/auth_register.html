@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="auth">
+  <h2>Criar conta</h2>
+
+  {% if disciplina %}
+    <p class="muted" style="margin:0 0 10px 0">
+      Você está se cadastrando na disciplina: <strong>{{ disciplina.name }}</strong>
+      — <a class="link" href="/access">trocar</a>
+    </p>
+  {% endif %}
+
+  {% if error %}<div class="alert alert-error">⚠️ {{ error }}</div>{% endif %}
+
+  <form class="form" method="post" action="/signup">
+    <label class="field">
+      <span>Usuário</span>
+      <input type="text" name="name" placeholder="Escolha um usuário" value="{{ form_prev.name }}" required>
+    </label>
+
+    <label class="field">
+      <span>Senha</span>
+      <input type="password" name="password" placeholder="Mínimo 4 caracteres" required>
+    </label>
+
+    <label class="field">
+      <span>Confirmar senha</span>
+      <input type="password" name="password2" placeholder="Repita a senha" required>
+    </label>
+
+    <button class="btn" type="submit">Criar conta</button>
+
+    <p class="muted">Já tem conta? <a class="link" href="/login">Entrar</a></p>
+  </form>
+</div>
+{% endblock %}

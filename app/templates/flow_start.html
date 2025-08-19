@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <div class="auth" style="max-width:520px;margin:40px auto;">
+    <h2 style="margin-top:0;margin-bottom:12px;">Bem-vindo(a)! Escolha sua disciplina</h2>
+
+    {% if err %}
+    <div class="card" style="border-color:#8a2c2c;background:#2a0f0f;margin-bottom:12px;">
+      <div>⚠ {{ err }}</div>
+    </div>
+    {% endif %}
+
+    <form class="form" method="post" action="/start">
+      <div class="field">
+        <span>Disciplina</span>
+        <select name="disc_id" required
+                style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:#0e1430;color:var(--text);">
+          <option value="">-- Selecione --</option>
+          {% for d in disciplinas %}
+            <option value="{{ d.id_discipline }}">{{ d.no_discipline }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="field">
+        <span>Senha da disciplina</span>
+        <input type="password" name="password" placeholder="Digite a senha informada pelo professor" required />
+      </div>
+
+      <div class="actions">
+        <button class="btn" type="submit">Entrar</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="auth">
+  <h2>Entrar</h2>
+
+  {% if disciplina %}
+    <p class="muted" style="margin:0 0 10px 0">
+      Disciplina selecionada: <strong>{{ disciplina.name }}</strong>
+      — <a class="link" href="/access">trocar</a>
+    </p>
+  {% endif %}
+
+  {% if notice %}
+    <div class="alert alert-success">✅ {{ notice }}</div>
+  {% endif %}
+  {% if error %}
+    <div class="alert alert-error">⚠️ {{ error }}</div>
+  {% endif %}
+
+  <form class="form" method="post" action="/login">
+    <label class="field">
+      <span>Usuário</span>
+      <input type="text" name="username" placeholder="Seu usuário" value="{{ username }}" required>
+    </label>
+
+    <label class="field">
+      <span>Senha</span>
+      <div class="password">
+        <input id="pwd" type="password" name="password" placeholder="••••••••" required>
+        <button type="button" id="togglePwd" class="link">mostrar</button>
+      </div>
+    </label>
+
+    <div class="row">
+      <label class="check">
+        <input type="checkbox" name="remember"> Lembrar de mim
+      </label>
+      <a href="#" class="link">Esqueci minha senha</a>
+    </div>
+
+    <button class="btn" type="submit">Entrar</button>
+
+    <p class="muted">Não tem conta? <a class="link" href="/signup">Criar conta</a></p>
+  </form>
+</div>
+
+<script>
+  (function () {
+    const btn = document.getElementById('togglePwd');
+    const pwd = document.getElementById('pwd');
+    if (btn && pwd) {
+      btn.addEventListener('click', () => {
+        const t = pwd.getAttribute('type') === 'password' ? 'text' : 'password';
+        pwd.setAttribute('type', t);
+        btn.textContent = t === 'password' ? 'mostrar' : 'ocultar';
+      });
+    }
+  })();
+</script>
+{% endblock %}

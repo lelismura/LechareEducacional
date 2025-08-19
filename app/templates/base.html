@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ titulo or "Lechare Educacional" }}</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <link rel="icon" type="image/png" href="/static/lechare-logo.png" />
+</head>
+<body class="page">
+  <header class="topbar">
+    <div class="container">
+      <a class="brand" href="/start" title="Lechare Educacional">
+        <img src="/static/lechare-logo.png" alt="Logo" style="height:24px;width:24px;display:inline-block;vertical-align:middle;margin-right:6px" />
+        Lechare Educacional
+      </a>
+      <!-- nav removida (não mostrar 'Início') -->
+      <nav class="nav"></nav>
+    </div>
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div class="container muted">
+      © 2025 Lechare Educacional
+    </div>
+  </footer>
+</body>
+</html>
