@@ -1,0 +1,6 @@
+runtime: python310
+
+entrypoint: python run.py
+
+env_variables:
+  PYTHONUNBUFFERED: "1"
