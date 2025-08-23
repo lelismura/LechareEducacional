@@ -1,18 +1,20 @@
-# Usa a imagem oficial do Python
+# Usa uma imagem oficial do Python
 FROM python:3.10-slim
 
-# Define a pasta de trabalho
+# Define diretório de trabalho dentro do container
 WORKDIR /app
 
-# Copia requirements e instala dependências
+# Copia apenas requirements primeiro (para cache eficiente)
 COPY requirements.txt .
+
+# Instala dependências
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia o código
+# Copia o resto do projeto (templates, static, app, etc.)
 COPY . .
 
-# Expõe a porta do Cloud Run
-EXPOSE 8080
+# Define porta usada pelo Cloud Run
+ENV PORT=8080
 
-# Comando para rodar a app FastAPI
-CMD ["gunicorn", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "app.main:app", "--bind", "0.0.0.0:8080"]
+# Comando que o Cloud Run executa para iniciar o app
+CMD exec gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app --bind :$PORT

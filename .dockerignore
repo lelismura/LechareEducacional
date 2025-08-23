@@ -1,0 +1,20 @@
+# Ignora ambientes virtuais e dependências locais
+.venv
+venv
+env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignora Git e arquivos de controle
+.git
+.gitignore
+
+# Ignora arquivos de IDE
+.vscode
+.idea
+
+# Logs e caches
+*.log
+*.sqlite3
