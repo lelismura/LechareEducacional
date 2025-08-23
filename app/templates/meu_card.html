@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cartão de Visita</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Verdana, sans-serif;
+    }
+
+    /* Logo sempre visível */
+    #logo-btn {
+      cursor: pointer;
+      height: 70px;
+      transition: transform 0.2s ease;
+    }
+    #logo-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* Fundo escuro transparente quando o cartão abre */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    /* Cartão */
+    .card {
+      background: linear-gradient(135deg, #002855, #0047ab);
+      color: #ffcc00;
+      padding: 40px 40px 20px 40px; /* margem superior maior */
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+      width: 525px;
+      height: 300px;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      font-family: Verdana, sans-serif;
+    }
+
+    /* Quando ativo, aparece com fade-in */
+    .overlay.show .card {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Cabeçalho */
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      justify-content: space-between;
+    }
+
+    .header img {
+      width: 90px; /* logo */
+      margin-right: 12px;
+    }
+
+    .header h2 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .header h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: normal;
+    }
+
+    /* Botão de fechar */
+    .close-btn {
+      background: none;
+      border: none;
+      color: #ffcc00;
+      font-size: 32px;
+      cursor: pointer;
+      position: relative;
+      top: -10px;
+      right: -10px;
+    }
+    .close-btn:hover {
+      color: #ffff66;
+    }
+
+    /* Container das infos (ícones + textos) */
+    .info-container {
+      margin-top: 30px; /* empurra para baixo */
+    }
+
+    .info {
+      display: flex;
+      align-items: center;
+      margin: 12px 0;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .info i {
+      font-size: 22px;
+      margin-right: 12px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    .info i:hover {
+      color: #ffff66;
+    }
+
+    a {
+      color: #ffcc00;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Logo que abre o cartão -->
+  <img id="logo-btn" src="Lechare_icone.png" alt="Logo Lechare">
+
+  <!-- Overlay com o cartão -->
+  <div class="overlay" id="overlay">
+    <div class="card">
+      <div class="header">
+        <img src="Lechare_icone.png" alt="Logo">
+        <div>
+          <h2>Prof. Dr. Lelis T Murakami</h2>
+          <h3>Engenheiro Civil</h3>
+        </div>
+        <button class="close-btn" onclick="fecharCard()">&times;</button>
+      </div>
+
+      <!-- Container das infos -->
+      <div class="info-container">
+        <div class="info">
+          <i class="fas fa-globe" onclick="window.open('https://www.lechare.com.br', '_blank')"></i>
+          <a href="https://www.lechare.com.br" target="_blank">www.lechare.com.br</a>
+        </div>
+        <div class="info">
+          <i class="fas fa-phone" onclick="copyToClipboard('11963727187')"></i>
+          <span id="phone">11 963727187</span>
+        </div>
+        <div class="info">
+          <i class="fas fa-envelope" onclick="copyToClipboard('lelis.cursonline@lechare.com.br')"></i>
+          <span id="email">lelis.cursonline@lechare.com.br</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const logo = document.getElementById('logo-btn');
+    const overlay = document.getElementById('overlay');
+
+    logo.addEventListener('click', () => {
+      overlay.style.display = 'flex';
+      setTimeout(() => overlay.classList.add('show'), 10);
+    });
+
+    function fecharCard() {
+      overlay.classList.remove('show');
+      setTimeout(() => overlay.style.display = 'none', 400);
+    }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copiado: " + text);
+      });
+    }
+  </script>
+</body>
+</html>
