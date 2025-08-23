@@ -6,15 +6,62 @@
   <title>{{ titulo or "Lechare Educacional" }}</title>
   <link rel="stylesheet" href="/static/styles.css" />
   <link rel="icon" type="image/png" href="/static/lechare-logo.png" />
+  <style>
+    /* === Modal Cartão === */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      inset: 0; /* equivale a top:0;left:0;width:100%;height:100% */
+      background-color: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: transparent;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: 95%;
+      max-height: 95%;
+    }
+
+    .modal-content iframe {
+      width: 600px;
+      height: 400px;
+      max-width: 95vw;
+      max-height: 95vh;
+      border: none;
+      border-radius: 12px;
+      background: white;
+    }
+
+    #logo-app {
+      height: 40px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #fff;
+    }
+  </style>
 </head>
 <body class="page">
   <header class="topbar">
     <div class="container">
-      <a class="brand" href="/start" title="Lechare Educacional">
-        <img src="/static/lechare-logo.png" alt="Logo" style="height:24px;width:24px;display:inline-block;vertical-align:middle;margin-right:6px" />
+      <!-- Logo abre o cartão -->
+      <a class="brand" href="#" id="abrir-cartao" title="Lechare Educacional">
+        <img src="/static/lechare-logo.png" alt="Logo" id="logo-app"/>
         Lechare Educacional
       </a>
-      <!-- nav removida (não mostrar 'Início') -->
       <nav class="nav"></nav>
     </div>
   </header>
@@ -28,5 +75,41 @@
       © 2025 Lechare Educacional
     </div>
   </footer>
+
+  <!-- Modal do cartão -->
+  <div id="cartaoModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <iframe 
+        src="/cartao" 
+        style="width: 90vw; max-width: 600px; height: 400px; border:none; border-radius:12px; background:transparent;">
+      </iframe>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const abrirCartao = document.getElementById("abrir-cartao");
+      const modal = document.getElementById("cartaoModal");
+
+      abrirCartao.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal.style.display = "flex";
+      });
+
+      // Fecha o modal clicando fora
+      window.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+
+      // Escuta mensagens do iframe cartao.html
+      window.addEventListener("message", (event) => {
+        if (event.data.action === "fecharCartao") {
+          modal.style.display = "none";
+        }
+      });
+    });
+  </script>
 </body>
 </html>

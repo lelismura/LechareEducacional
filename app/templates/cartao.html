@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cartão de Visita</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: transparent;
+    }
+
+    /* Cartão */
+    .card {
+      position: relative;
+      background: linear-gradient(135deg, #002855, #0047ab);
+      color: #ffcc00;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+      width: 500px;
+      max-width: 90%;
+    }
+
+    /* Botão de fechar */
+    .close-btn {
+      position: absolute;
+      top: 10px; right: 15px;
+      background: none;
+      border: none;
+      color: #ffcc00;
+      font-size: 26px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close-btn:hover { color: #ffff66; }
+
+    /* Cabeçalho */
+    .header { display: flex; align-items: center; gap: 15px; }
+    .header img { width: 70px; }
+    .header h2 { margin: 0; font-size: 20px; }
+    .header h3 { margin: 0; font-size: 16px; font-weight: normal; }
+
+    /* Infos */
+    .info-container { margin-top: 25px; }
+    .info {
+      display: flex; align-items: center;
+      margin: 10px 0; font-size: 16px;
+    }
+    .info i { font-size: 20px; margin-right: 10px; cursor: pointer; }
+    .info i:hover { color: #ffff66; }
+
+    a { color: #ffcc00; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <button class="close-btn" onclick="parent.postMessage({action:'fecharCartao'}, '*')">×</button>
+    <div class="header">
+      <img src="/static/lechare-logo.png" alt="Logo" />
+      <div>
+        <h2>Prof. Dr. Lelis T Murakami</h2>
+        <h3>Engenheiro Civil</h3>
+      </div>
+    </div>
+
+    <div class="info-container">
+      <div class="info">
+        <i class="fas fa-globe" onclick="window.open('https://www.lechare.com.br','_blank')"></i>
+        <a href="https://www.lechare.com.br" target="_blank">www.lechare.com.br</a>
+      </div>
+      <div class="info">
+        <i class="fas fa-phone" onclick="copyToClipboard('11963727187')"></i>
+        <span>11 963727187</span>
+      </div>
+      <div class="info">
+        <i class="fas fa-envelope" onclick="copyToClipboard('lelis.cursonline@lechare.com.br')"></i>
+        <span>lelis.cursonline@lechare.com.br</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copiado: " + text);
+      });
+    }
+  </script>
+</body>
+</html>

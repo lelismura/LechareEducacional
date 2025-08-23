@@ -219,7 +219,7 @@ main, .content, .page, .page-wrap, .container{
 /* “Cartões”/painéis — sem depender de classe específica */
 .card, .panel, .box, .form-card, .quiz-card, .flow-card,
 section.cardlike{
-  padding: clamp(16px, 2.5vw, 32px);
+  padding: clamp(10px, 1.5vw, 20px);
   border-radius: var(--radius);
 }
 
@@ -269,7 +269,7 @@ details > summary{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1.25rem;
+  padding: 0,75rem 1rem;
 }
 details[open] > summary{
   border-bottom: 1px solid rgba(255,255,255,.08);
