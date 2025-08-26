@@ -1,0 +1,27 @@
+[33m01ab81e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m tentando mostrar o cartao
+[33m3dadd36[m jklfa
+[33m4090e4e[m fsad
+[33m9a8d23d[m qq
+[33m748a9a3[m mais uma vze
+[33m206beb8[m mais uma
+[33md0b897e[m puts
+[33m5469a7a[m vish
+[33m76b6550[m Corrige entrypoint e inclui Procfile e requirements completos
+[33m5722559[m Remove arquivos extras, volta para deploy simples com requirements.txt
+[33m64c955a[m corrige entrypoint do deploy no Cloud Run
+[33m6c1938c[m  corrige entrypoint
+[33m6381333[m corrige entrypoint para main:app no cloud run
+[33md1bee19[m fix: adicionar Procfile para Cloud Run apontando app.main:app
+[33m31fa996[m ajuste deploy cloud run
+[33m0fa43a6[m add Procfile for Cloud Run
+[33m0043d5b[m add requirements.txt
+[33mca462e7[m AtualizaÃ§Ã£o automÃ¡tica do projeto
+[33m657c922[m Ajustes: main.py, inclusão de main.js e meu_card.html
+[33mdd24d2d[m Adiciona modal do cartão de visita integrado no base.html e ajustes no styles.css
+[33m632ed8b[m UI-> ajustar responsividade no CSS
+[33m8990eb5[m UI: CSS responsivo
+[33mb8a79aa[m fix: add mysql-connector driver for SQLAlchemy on Render
+[33mb0aa6e6[m Merge branch 'main' of https://github.com/lelismura/LechareEducacional
+[33m47b9784[m primeiro deploy
+[33mb9cc88a[m Update requirements
+[33m3f9e9b4[m Create requirements

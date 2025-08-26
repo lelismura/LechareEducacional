@@ -6,13 +6,15 @@
   <title>{{ titulo or "Lechare Educacional" }}</title>
   <link rel="stylesheet" href="/static/styles.css" />
   <link rel="icon" type="image/png" href="/static/lechare-logo.png" />
+  <!-- Font Awesome para os ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     /* === Modal Cartão === */
     .modal {
       display: none;
       position: fixed;
       z-index: 1000;
-      inset: 0; /* equivale a top:0;left:0;width:100%;height:100% */
+      inset: 0;
       background-color: rgba(0,0,0,0.7);
       justify-content: center;
       align-items: center;
@@ -52,10 +54,28 @@
       text-decoration: none;
       color: #fff;
     }
+
+    .top-icons i {
+      transition: color 0.2s ease;
+    }
+    .top-icons i:hover {
+      color: #ffff66;
+    }
   </style>
 </head>
 <body class="page">
   <header class="topbar">
+    <!-- Barra de ícones -->
+    <div class="top-icons" style="position:absolute;top:10px;right:20px;display:flex;gap:20px;font-size:22px;color:#ffcc00;cursor:pointer;z-index:2000;">
+      <!-- Site -->
+      <i class="fas fa-globe" onclick="window.open('https://www.lechare.com.br','_blank')" title="Site oficial"></i>
+      
+      <!-- Email -->
+      <i class="fas fa-envelope" onclick="copyToClipboard('lelis.cursonline@lechare.com.br')" title="Copiar Email"></i>
+      
+      <!-- WhatsApp -->
+      <i class="fab fa-whatsapp" onclick="copyToClipboard('11963727187')" title="Copiar WhatsApp"></i>
+    </div>
     <div class="container">
       <!-- Logo abre o cartão -->
       <a class="brand" href="#" id="abrir-cartao" title="Lechare Educacional">
@@ -110,6 +130,12 @@
         }
       });
     });
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copiado: " + text);
+      });
+    }
   </script>
 </body>
 </html>
