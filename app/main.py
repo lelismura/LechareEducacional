@@ -7,7 +7,6 @@ from app.web import router as web_router   # importa as rotas de web.py
 from app.routers.flow import router as flow_router
 from app.routers.public import router as public_router
 
-app = FastAPI(title="Lechare Educacional")
 
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
