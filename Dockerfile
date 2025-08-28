@@ -17,4 +17,5 @@ COPY . .
 ENV PORT=8080
 
 # Comando que o Cloud Run executa para iniciar o app
-CMD exec gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app --bind :$PORT
+# Reduzimos para 2 workers para não estourar limite do Cloud Run
+CMD exec gunicorn -w 2 -k uvicorn.workers.UvicornWorker app.main:app --bind :$PORT
