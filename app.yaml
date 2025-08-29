@@ -1,8 +1,10 @@
 # app.yaml
 runtime: python310
-
-entrypoint: gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app
+service: lechare-web-app
+entrypoint: gunicorn -w 1 -k uvicorn.workers.UvicornWorker app.main:app --bind :$PORT
 
 env_variables:
-  PYTHONUNBUFFERED: "true"
-  PORT: "8080"
+  DB_HOST: 186.202.152.70
+  DB_NAME: queryanswer
+  DB_USER: queryanswer
+  DB_PASS: Esqueci#25

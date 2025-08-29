@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.10-slim-buster
 
 WORKDIR /app
 
@@ -10,4 +10,4 @@ COPY . .
 
 ENV PORT=8080
 
-CMD exec gunicorn -w 1 -k uvicorn.workers.UvicornWorker app.main:app --bind :$PORT
+CMD exec gunicorn -w 1 -k uvicorn.workers.UvicornWorker app.main:app --bind :$PORT --log-level debug
